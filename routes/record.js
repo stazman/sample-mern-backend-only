@@ -1,11 +1,13 @@
 const express = require("express");
 
+function headers (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+}
+
 const app = express();
 
-// express.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
+app.use(headers);
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -17,6 +19,7 @@ const dbo = require("../db/conn");
 
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
+
 
 // This section will help you get a list of all the records.
 recordRoutes.route("/record").get(function (req, res) {
