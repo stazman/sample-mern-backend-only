@@ -1,20 +1,11 @@
 const express = require("express");
 const app = express();
-
 const cors = require("cors");
-
-require("dotenv").config();
-
+require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
-
-app.use(cors({
-    origin: 'https://cors-anywhere.herokuapp.com/https://sample-mern-frontend.vercel.app/',
-    optionsSuccessStatus: 200 
-  }));
-
+app.use(cors());
 app.use(express.json());
 app.use(require("./routes/record"));
-
 // get driver connection
 const dbo = require("./db/conn");
 
